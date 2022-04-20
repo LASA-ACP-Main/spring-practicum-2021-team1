@@ -9,7 +9,7 @@ struct Node {
         Node *next;
   };
 
-class linkedlist{
+class LinkedList{
 
   public:
 
@@ -17,14 +17,14 @@ class linkedlist{
   Node* head;
   Node* tail;
 
-  linkedlist(){
+  LinkedList(){
         head = NULL; // set head to NULL
 
         Node *newNode = new Node();
-        newNode -> classroom = new Classroom;
+        newNode->classroom = *new Classroom();
     
   } 
-  linkedlist(Classroom c){
+  LinkedList(const Classroom c){
       Node* head = NULL;
       
       Node *newNode = new Node();
@@ -206,6 +206,7 @@ class linkedlist{
     }		
 
 
+
     // subList(start, length)	//Returns a new list containing elements from a sub-range of this list.
     vector<Node*> subList(int start, int length){
       
@@ -225,6 +226,6 @@ class linkedlist{
 
       return vecFinal;
     }
-}
+};
 
 #endif 		//_LINKEDLIST_H_

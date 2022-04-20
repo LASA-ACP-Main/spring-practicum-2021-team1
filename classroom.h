@@ -10,11 +10,18 @@ Definition of Classroom
 class Classroom{
 
   public:
-    int posGridSize = 100;
+    int posGridSize;
+    std::string name;
     int positions[100][100];
     Student ids[100][100];
-    char category;
-
+    char riskCategory;
+    Classroom(){
+      posGridSize = 100;
+    }
+    Classroom(std::string n){
+      posGridSize = 100;
+      name = n;
+    }
 };
 
 #endif

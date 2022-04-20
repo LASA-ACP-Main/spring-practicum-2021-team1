@@ -3,7 +3,7 @@
 #include <string>
 using namespace std;
 #include <bits/stdc++.h>
-
+#include "classroom.h"
 struct Node {
         Classroom classroom;
         Node *next;
@@ -26,7 +26,7 @@ class LinkedList{
   } 
   LinkedList(const Classroom c){
       Node* head = NULL;
-      Node* head = NULL;
+      head = NULL;
       
       Node *newNode = new Node();
       newNode -> classroom = c;

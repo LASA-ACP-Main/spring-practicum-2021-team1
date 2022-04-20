@@ -5,7 +5,6 @@ Definition of Classroom
 */
 #ifndef CLASSROOM_H
 #define CLASSROOM_H
-#include "student.h"
 
 class Classroom{
 
@@ -13,7 +12,7 @@ class Classroom{
     int posGridSize;
     std::string name;
     int positions[100][100];
-    Student ids[100][100];
+    int ids[100][100];
     char riskCategory;
     Classroom(){
       posGridSize = 100;

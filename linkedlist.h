@@ -26,6 +26,7 @@ class LinkedList{
   } 
   LinkedList(const Classroom c){
       Node* head = NULL;
+      Node* head = NULL;
       
       Node *newNode = new Node();
       newNode -> classroom = c;

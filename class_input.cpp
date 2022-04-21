@@ -1,5 +1,6 @@
+#include <fstream>
 #include <iostream>
-#include <string> 
+#include <string>
 
 int main() 
 {
@@ -57,51 +58,49 @@ int main()
         int cols = -1; 
         std::cin >> cols;
 
+        //id variables
+        int id_len = 6; 
+        std::string ids[rows][cols]; 
+
+        std::ifstream infile;
         
+        infile.open ("test.csv", std::ifstream::in);
+        
+		if (infile.is_open())
+            
+		{
+    		while (infile.good())
+    		{
+    		    for(int i = 0; i < rows; i++)
+                {
+                    //infile.getline(tmp, 256, '\n');
+                    
+                    for(int j = 0; j < cols; j++)
+                    {
+                        char id_char_arr[id_len]; 
+                        if(j < cols-1)
+                            infile.getline(id_char_arr, 256, ','); 
+                        std::string id_str(id_char_arr); 
+                        std::strcpy(ids[i][j],id_char_arr); 
+                    }
 
-        int ids[10][10]; 
+                    char tmp[256]; 
+                    infile.getline(tmp, 256, '\n');
 
-        //read csv file
-
-        std::ifstream file;
-
-          file.open ("test.csv", std::ifstream::in);
-
-        if (file.is_open())
-        {
-            while (infile.good())
-            {
-                file.getline(ids, 256,',');
-            }
+                    std::cout << std::endl; 
+                }
+    		}
   
-        		file.close();
-        }
-        else
-        {
-            std::cout << "Error opening csv file";
-            exit(1); 
-        }
-
-  for(int i = 0; i < salesArrayCount; i++)
-  {
-    s[i] = &salesArr[i]; 
-  }
-
-  simpleSortTotal(*s, salesArrayCount); 
+    		infile.close();
+    	}
+    	else
+    	{
+    		std::cout << "Error opening file";
+    	}
 
 
-
+        std::cout << ids[2][3]; 
         
-        for(int i = 0; i < rows; i++)
-        {
-            for(int j = 0; j < cols; j++)
-            {
-                std::cout << "(" << i << ", " << j << "): "; 
-                std::cin >> ids[i][j];
-            }
-        }
-        //
-
         {
             std::string str; 
             
@@ -110,10 +109,10 @@ int main()
                 for(int j = 0; j < cols; j++)
                 {
                     str += "|"; 
-                    str += std::to_string(ids[i][j]);
+                    str += ids[i][j];
                 }
 
-                str += "|\n---------------------------------\n"; 
+                str += "\n|------------------------------------------------------\n"; 
             }
 
             std::cout << str << std::endl; 

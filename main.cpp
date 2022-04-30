@@ -2,7 +2,15 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-#include "downloader.h"
+
+typedef struct
+{
+    std::string csv_file_link; 
+    std::string email; 
+}Teacher; 
+
+void process_teacher_csv_files(std::fstream *file); 
+void get_teacher_gforms(); 
 
 int main() 
 {
@@ -108,20 +116,81 @@ int main()
     else if(test_opt_flag == 2)
     {
         get_teacher_gforms(); 
-
-        /*
-        std::fstream file("test.csv", std::ios::in); 
+        
+        std::fstream file("practicum_responses.csv", std::ios::in); 
 
         while(file.fail())
         {
-            file = std::fstream("test.csv", std::ios::in);
+            file = std::fstream("practicum_responses.csv", std::ios::in);
         }
 
-        std::cout << "file uploaded" << std::endl; 
-        */ 
+        std::cout << "teacher csv file uploaded" << std::endl; 
+        
+        process_teacher_csv_files(&file); 
     }
     else if(test_opt_flag == 3)
     {
         system("python3 -u get_res.py"); 
     }
+}
+
+void process_teacher_csv_files(std::fstream *file)
+{
+    Teacher teachers[100];
+
+    std::string line, word;
+    int i = 0; 
+    
+    if(file->is_open())
+    {   
+        while(getline(*file, line))
+        {
+            int j = 0; 
+
+            std::stringstream str(line);
+ 
+            while(getline(str, word, ','))
+            {
+                if(i >= 1)
+                {
+                    if(j == 1)
+                    {
+                        teachers[i-1].email = word;
+                    }
+                    else if(j == 2)
+                    {
+                        teachers[i-1].csv_file_link = word; 
+                    }
+                }
+                
+                j++; 
+            }
+
+            i++; 
+        }
+    }
+    else
+        std::cout << "Could not open the file\n";
+
+    int teachers_len = i-1; 
+
+    {
+        std::string str; 
+        
+        for(int idx = 0; idx < teachers_len; idx++)
+        {
+            str += "EMAIL: "; 
+            str += teachers[idx].email; 
+            str += " | CSV FILE LINK:"; 
+            str += teachers[idx].csv_file_link; 
+            str += "\n"; 
+        }
+
+        std::cout << str << std::endl; 
+    }
+}
+
+void get_teacher_gforms()
+{
+    system("python3 -u get_file.py"); 
 }

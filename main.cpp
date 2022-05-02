@@ -1,5 +1,6 @@
 #include <fstream>
 #include <iostream>
+<<<<<<< Updated upstream
 #include <string>
 #include <sstream>
 
@@ -193,4 +194,58 @@ void process_teacher_csv_files(std::fstream *file)
 void get_teacher_gforms()
 {
     system("python3 -u get_file.py"); 
+=======
+#include  "student.h"
+#include  "classroom.h"
+#include "linkedlist.h"
+#include <bits/stdc++.h>
+
+
+int main() {
+  //Global master school schedule
+  LinkedList* globalSchedule = new LinkedList();
+  /*TODO: DELETE THIS*/
+  int arr[5][5] = {
+                  {846624,153468,946825,754685,755748},
+                  {456545,877786,985462,956432,154684},
+                  {183542,584151,456855,433212,168956},
+                  {128331,109531,124385,189312,021321},
+                  {128315,429312,941421,982307,194722}
+                  };
+
+  int arr2[5][5] = {
+                  {146624,153468,946825,754685,755748},
+                  {456545,877786,985462,956432,154684},
+                  {183542,584151,456855,433212,168956},
+                  {128331,109531,124385,189312,021321},
+                  {128315,429312,941421,982307,194722}
+                  };
+
+  int arr3[5][5] = {
+                  {846624,153468,946825,754685,755748},
+                  {456545,877786,985462,956432,154684},
+                  {183542,584151,456855,433212,168956},
+                  {128331,109531,124385,189312,021321},
+                  {128315,429312,941421,982307,194722}
+                  };
+
+  int arr4[5][5] = {
+                  {846624,153468,946825,754685,755748},
+                  {456545,877786,985462,956432,154684},
+                  {183542,584151,456855,433212,168956},
+                  {128331,109531,124385,189312,021321},
+                  {128315,429312,941421,982307,194722}
+                  };
+
+  Classroom* c = new Classroom("ACP_A1",10000,'M',arr);
+  Classroom* d = new Classroom("ACP_A4",10000,'M',arr);
+  Classroom* e = new Classroom("Digi_A2",11000,'L',arr);
+  Classroom* f = new Classroom("PE_A3",696969,'H',arr);
+  
+  globalSchedule->add(*c);
+  globalSchedule->add(*d);
+  globalSchedule->add(*e);
+  globalSchedule->add(*f);
+
+>>>>>>> Stashed changes
 }

@@ -18,6 +18,7 @@ class Student{
     double atRisk;
     void addClass(int);
     void removeClass(int);
+    void displaySchedule();
     int getSchedule();
     LinkedList schedule;
     Student(){
@@ -25,7 +26,6 @@ class Student{
       atRisk = 0.0;
       LinkedList *schedule = new LinkedList();
     }
-
     int maxClasses = 100;
     
 };

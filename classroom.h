@@ -11,26 +11,18 @@ class Classroom{
 
   public:
     std::string name;
-<<<<<<< Updated upstream
-    int positions[2][2];
-    int ids[100][100];
-=======
     int ids[SIZE][SIZE];
->>>>>>> Stashed changes
+    float riskMatrix[SIZE][SIZE];
     char riskCategory;
     int teacherId;
     Classroom(){
     }
     Classroom(std::string n){
-<<<<<<< Updated upstream
-      posGridSize = 2;
-=======
->>>>>>> Stashed changes
       name = n;
     }
     void setPositions(int a[SIZE][SIZE]){
-      for (int i=0;i<2;i++){
-        for (int j=0;j<2;j++){
+      for (int i=0;i<SIZE;i++){
+        for (int j=0;j<SIZE;j++){
           ids[i][j]=a[i][j];
         }
       }
@@ -42,11 +34,75 @@ class Classroom{
       teacherId = tId;
     }
     void display(){
-      for (int i=0;i<2;i++){
-        for (int j=0;j<2;j++){
+      for (int i=0;i<SIZE;i++){
+        for (int j=0;j<SIZE;j++){
           std::cout<<ids[i][j]<<" ";
         }
         std::cout << endl;
+      }
+    }
+    void displayRisk(){
+      for (int i=0;i<SIZE;i++){
+        for (int j=0;j<SIZE;j++){
+          float risk = riskMatrix[i][j];
+          std::cout << std::fixed << std::setprecision(2);
+          std::cout<<ids[i][j]<<": "<<risk<<"\t";
+        }
+        std::cout << endl;
+      }
+    }
+    void exposure(int id){
+      int r = 0;
+      int c = 0;
+      for (int i=0;i<SIZE;i++){
+        for(int j=0;j<SIZE;j++){
+          if(ids[i][j]==id){
+            r = i;
+            c = j;
+            riskMatrix[i][j]=1;
+          }
+        }
+      }
+      //THIS IS THE ALGORITHM THAT DECIDES RISK
+      if(riskCategory == 'H'){
+        for (int i=0;i<SIZE;i++){
+          for(int j=0;j<SIZE;j++){
+            riskMatrix[i][j]=0.75;
+          }
+        }
+      }else{
+        if(riskCategory == 'M'){
+          for(int i=0;i<SIZE;i++){
+            for(int j=0;j<SIZE;j++){
+              if(i==r-1 || i==r+1){
+                riskMatrix[i][c]=0.75;
+                try{
+                  riskMatrix[i][c+1]=0.75;
+                }catch(...){
+                  continue;
+                }
+                try{
+                  riskMatrix[i][c-1]=0.75;
+                }catch(...){
+                  continue;
+                }
+              }
+              if(j==c-1 || j==c+1){
+                riskMatrix[r][j]=0.75;
+                try{
+                  riskMatrix[r+1][j]=0.75;
+                }catch(...){
+                  continue;
+                }
+                try{
+                  riskMatrix[r-1][j]=0.75;
+                }catch(...){
+                  continue;
+                }
+              }
+            }
+          }
+        }
       }
     }
 };

@@ -1,13 +1,13 @@
 /*#include <iostream>
 #include  "student.h"
 #include  "classroom.h"
-#include "linkedlist.h"
+#include "LinkedListC.h"
 #include <bits/stdc++.h>
 
 
 int main() {
   //Classroom* c = new Classroom("suns in fo");
-  //LinkedList* l = new LinkedList();
+  //LinkedListC* l = new LinkedListC();
 
   // Add
   /*l->add(*c);
@@ -16,12 +16,12 @@ int main() {
   if(l->head == nullptr){
     std::cout<<"this code sucks";
   }
-  LinkedList students = new LinkedList();
+  LinkedListC students = new LinkedListC();
   std::cout << "Hello World!\n";
   Student* joe = new Student();
   
   
-  LinkedList* globalSchedule = new LinkedList();
+  LinkedListC* globalSchedule = new LinkedListC();
 
   int arr[2][2] = {{13810,1230},{12132,12043}};
   

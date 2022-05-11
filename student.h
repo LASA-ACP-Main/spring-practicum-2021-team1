@@ -16,6 +16,7 @@ class Student{
     bool vaccinated;
     int id;
     double atRisk;
+    bool hasCovid;
     void addClass(int);
     void removeClass(int);
     void displaySchedule();
@@ -27,7 +28,15 @@ class Student{
       LinkedList *schedule = new LinkedList();
     }
     int maxClasses = 100;
-    
+    void testResults(bool result){
+      if(result){
+        hasCovid = true;
+      }
+      else{
+        hasCovid = false;
+      }
+    }
+
 };
 
 #endif

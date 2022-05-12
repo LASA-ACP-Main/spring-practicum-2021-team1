@@ -1,39 +1,39 @@
-#ifndef _LINKEDLIST_H_
-#define _LINKEDLIST_H_
+#ifndef _LINKEDLISTS_H_
+#define _LINKEDLISTS_H_
 #include <string>
 using namespace std;
 #include <bits/stdc++.h>
-#include "classroom.h"
-struct Node {
-        Classroom classroom;
-        Node *next;
+#include "student.h"
+#include "linkedlist.h"
+struct NodeS {
+        Student student;
+        NodeS *next;
   };
-
-class LinkedList{
+class LinkedListS{
 
   public:
 
 
-  Node* head;
-  Node* tail;
+  NodeS* head;
+  NodeS* tail;
 
-  LinkedList(){
+  LinkedListS(){
         head = NULL; // set head to NULL
 
-        Node *newNode = new Node();
-        newNode->classroom = *new Classroom();
+        NodeS *newNode = new NodeS();
+        newNode->student = *new Student();
     
   } 
-  LinkedList(const Classroom c){
-      Node* head = NULL;
+  LinkedListS(const Student c){
+      NodeS* head = NULL;
       head = NULL;
       
-      Node *newNode = new Node();
-      newNode -> classroom = c;
+      NodeS *newNode = new NodeS();
+      newNode -> student = c;
   }
-  void add(Classroom c){
-    Node *newNode = new Node();
-    newNode -> classroom = c;
+  void add(Student c){
+    NodeS *newNode = new NodeS();
+    newNode -> student = c;
     if(head == nullptr){
       head = newNode;
       tail = head;
@@ -44,16 +44,16 @@ class LinkedList{
     }
   }
   void clear(){
-    Node* temp = head;
+    NodeS* temp = head;
 
     while(temp->next != NULL){ // Iterating through linked list
-      Node* tempDelete = temp->next;
+      NodeS* tempDelete = temp->next;
       temp = temp -> next;
       delete tempDelete; // Iterating
     }
   }
-  Node* get(int index){
-    Node* temp = head;
+  NodeS* get(int index){
+    NodeS* temp = head;
     int count = 0;
     while(temp != NULL){
       if(count == index){
@@ -67,22 +67,22 @@ class LinkedList{
 
 
   void display(){
-    Node* temp = head;
+    NodeS* temp = head;
 
     while(temp != NULL){ // Iterating through linked list
-      std::cout << temp->classroom.name << '\n';
+      std::cout << temp->student.id << '\n';
       temp = temp->next;
     }
   }
 
 
-  void insert(int index, Classroom c){
+  void insert(int index, Student c){
       
-    Node *newNode = new Node();
-    newNode -> classroom = c;
+    NodeS *newNode = new NodeS();
+    newNode -> student = c;
 
-    Node* temp = newNode;
-    Node* current = head;
+    NodeS* temp = newNode;
+    NodeS* current = head;
 
     int count = 0;
     int tInd = index;
@@ -95,8 +95,8 @@ class LinkedList{
       add(c);
     }
     else{
-      Node* curr = head;
-      Node* prev = NULL;
+      NodeS* curr = head;
+      NodeS* prev = NULL;
 
       int count = 0;
 
@@ -119,9 +119,9 @@ class LinkedList{
   }
   //Switches the payload data of specified indexex.
     void exchg(int index1, int index2)	{
-      Node* ind1 = get(index1);
-      Node* ind2 = get(index2);
-      Node* temp = ind1;
+      NodeS* ind1 = get(index1);
+      NodeS* ind2 = get(index2);
+      NodeS* temp = ind1;
 
       ind1 = ind2;
       ind2 = temp;
@@ -129,11 +129,11 @@ class LinkedList{
 
     //Swaps node located at index1 with node at index2
     void swap(int index1, int index2){
-      Node* prevN1 = get(index1);
-      Node* prevN2 = get(index2);
+      NodeS* prevN1 = get(index1);
+      NodeS* prevN2 = get(index2);
 
-      Node* temp1 = head;
-      Node* temp2 = head;
+      NodeS* temp1 = head;
+      NodeS* temp2 = head;
 
       if(prevN1 == prevN2){ // If nodes are same, don't swap
         return;
@@ -166,7 +166,7 @@ class LinkedList{
         }
 
 
-        Node* tempSwap = temp1->next;   // Before swapped the prevs, now swapping the nexts
+        NodeS* tempSwap = temp1->next;   // Before swapped the prevs, now swapping the nexts
         temp1->next = temp2->next;   
         temp2->next = tempSwap;  
       }
@@ -179,27 +179,27 @@ class LinkedList{
 
     //Removes the element at the specified index from this list.
     void remove(int index) {
-      Node* temp = head;
+      NodeS* temp = head;
       int count = 0;
 
       if(index == 0){
         head = head->next;
       }
       else if (index == size()-1){
-        Node* last = get(size() - 2);
+        NodeS* last = get(size() - 2);
         last -> next = NULL;
       }
       else{
-        Node* current = get(index - 1);
-        Node* after = get(index + 1);
+        NodeS* current = get(index - 1);
+        NodeS* after = get(index + 1);
         current->next = after;
       }
 
     }
-  void set(int index, Classroom c){
+  void set(int index, Student c){
       
-      Node* thatNode = get(index);
-      thatNode -> classroom = c;
+      NodeS* thatNode = get(index);
+      thatNode -> student = c;
 
     }
 
@@ -207,7 +207,7 @@ class LinkedList{
     int size() { //Returns the number of elements in this list.
       
       int count = 0;
-      Node* temp = head;
+      NodeS* temp = head;
       
       while(temp != NULL){ // Iterating through linked list until it reaches end
         temp = temp->next; // Iterating
@@ -220,11 +220,11 @@ class LinkedList{
 
 
     // subList(start, length)	//Returns a new list containing elements from a sub-range of this list.
-    vector<Node*> subList(int start, int length){
+    vector<NodeS*> subList(int start, int length){
       
-      Node* temp = head;
-      vector<Node*> vec = {};
-      vector<Node*> vecFinal = {};
+      NodeS* temp = head;
+      vector<NodeS*> vec = {};
+      vector<NodeS*> vecFinal = {};
       
 
       while(temp != NULL){ // Iterating through linked list until it reaches end
@@ -240,4 +240,4 @@ class LinkedList{
     }
 };
 
-#endif 		//_LINKEDLIST_H_
+#endif 		//_LINKEDLISTS_H_

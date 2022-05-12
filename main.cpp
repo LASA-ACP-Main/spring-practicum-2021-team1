@@ -8,6 +8,7 @@
 int main() {
   //Global master school schedule
   LinkedList* globalSchedule = new LinkedList();
+  LinkedListS* globalStudents = new LinkedListS();
   /*TODO: DELETE THIS*/
   int arr[5][5] = {
                   {846624,153468,946825,754685,755748},

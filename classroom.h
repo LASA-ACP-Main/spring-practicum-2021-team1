@@ -42,6 +42,7 @@ class Classroom{
       }
     }
     void displayRisk(){
+      std::cout<<"CLASS: "<<name<<"\t RISK: "<<riskCategory<<endl;
       for (int i=0;i<SIZE;i++){
         for (int j=0;j<SIZE;j++){
           float risk = riskMatrix[i][j];

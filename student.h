@@ -27,6 +27,13 @@ class Student{
       atRisk = 0.0;
       LinkedList *schedule = new LinkedList();
     }
+    Student(int d,double r){
+      vaccinated = false;
+      atRisk = 0.0;
+      LinkedList *schedule = new LinkedList();
+      id = d;
+      atRisk = r;
+    }
     int maxClasses = 100;
     void testResults(bool result){
       if(result){

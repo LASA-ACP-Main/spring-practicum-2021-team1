@@ -52,7 +52,7 @@ class Classroom{
         std::cout << endl;
       }
     }
-    void exposure(int id){
+    void exposure(int id,double risk){
       int r = 0;
       int c = 0;
       for (int i=0;i<SIZE;i++){
@@ -60,7 +60,7 @@ class Classroom{
           if(ids[i][j]==id){
             r = i;
             c = j;
-            riskMatrix[i][j]=1;
+            riskMatrix[i][j]=risk;
           }
         }
       }
@@ -68,7 +68,7 @@ class Classroom{
       if(riskCategory == 'H'){
         for (int i=0;i<SIZE;i++){
           for(int j=0;j<SIZE;j++){
-            riskMatrix[i][j]=0.75;
+            riskMatrix[i][j]=0.75*risk;
           }
         }
       }else{
@@ -76,30 +76,44 @@ class Classroom{
           for(int i=0;i<SIZE;i++){
             for(int j=0;j<SIZE;j++){
               if(i==r-1 || i==r+1){
-                riskMatrix[i][c]=0.75;
-                try{
-                  riskMatrix[i][c+1]=0.75;
-                }catch(...){
-                  continue;
+                if(riskMatrix[i][c]==0){
+                  riskMatrix[i][c]=0.75*risk;
+                  try{
+                    if(riskMatrix[i][c+1]==0){
+                      riskMatrix[i][c+1]=0.75*risk;
+                    }
+                  }catch(...){
+                    continue;
+                  }
+                  try{
+                    if(riskMatrix[i][c+1]){
+                      riskMatrix[i][c-1]=0.75*risk;
+                    }
+                  }catch(...){
+                    continue;
+                  }
                 }
-                try{
-                  riskMatrix[i][c-1]=0.75;
-                }catch(...){
-                  continue;
-                }
+                
               }
               if(j==c-1 || j==c+1){
-                riskMatrix[r][j]=0.75;
-                try{
-                  riskMatrix[r+1][j]=0.75;
-                }catch(...){
-                  continue;
+                if(riskMatrix[r][j]==0){
+                  riskMatrix[r][j]=0.75*risk;
+                  try{
+                    if(riskMatrix[r+1][j]==0){
+                      riskMatrix[r+1][j]=0.75*risk;
+                    }
+                  }catch(...){
+                    continue;
+                  }
+                  try{
+                    if(riskMatrix[r+1][j]==0){
+                      riskMatrix[r-1][j]=0.75*risk;
+                    }
+                  }catch(...){
+                    continue;
+                  }
                 }
-                try{
-                  riskMatrix[r-1][j]=0.75;
-                }catch(...){
-                  continue;
-                }
+                
               }
             }
           }

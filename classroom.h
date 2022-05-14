@@ -68,13 +68,15 @@ class Classroom{
       if(riskCategory == 'H'){
         for (int i=0;i<SIZE;i++){
           for(int j=0;j<SIZE;j++){
-            riskMatrix[i][j]=0.75*risk;
+            riskMatrix[i][j]=risk;
           }
         }
-      }else{
-        if(riskCategory == 'M'){
+      }else if(riskCategory == 'M'){
           for(int i=0;i<SIZE;i++){
             for(int j=0;j<SIZE;j++){
+              if(i==r && j==c){
+                riskMatrix[i][j]==risk;
+              }
               if(i==r-1 || i==r+1){
                 if(riskMatrix[i][c]==0){
                   riskMatrix[i][c]=0.75*risk;
@@ -117,9 +119,27 @@ class Classroom{
               }
             }
           }
+        }else{
+            for(int i=0;i<SIZE;i++){
+              for(int j=0;j<SIZE;j++){
+                if(i==r && j==c){
+                riskMatrix[i][j]==risk;
+                }
+                if(i==r-1 || i==r+1){
+                  if(riskMatrix[i][c]==0){
+                    riskMatrix[i][c]=0.75*risk;
+                  }
+                }
+                if(j==c-1 || j==c+1){
+                  if(riskMatrix[r][j]==0){
+                    riskMatrix[r][j]=0.75*risk;
+                  
+                }
+              }
+            }
+          }    
         }
       }
-    }
 };
 
 #endif

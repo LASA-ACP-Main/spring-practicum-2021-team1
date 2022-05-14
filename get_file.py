@@ -1,6 +1,9 @@
 import gdown
 
-sharing_url = "https://drive.google.com/file/d/1JL9qzg3_hOiRnM7NGx-aNFR8PX9WokaT/view?usp=sharing"
+print('Enter teacher csv file url:')
+sharing_url = input()
+
+#sharing_url = "https://drive.google.com/file/d/1JL9qzg3_hOiRnM7NGx-aNFR8PX9WokaT/view?usp=sharing"
 
 file_id = ""
 for i in range(len(sharing_url)):
